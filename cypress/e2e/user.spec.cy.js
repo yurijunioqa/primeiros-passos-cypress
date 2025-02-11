@@ -15,7 +15,10 @@ describe('Orange HRM Tests', () => {
     genericField: ".oxd-input--active",
     dateField: "[placeholder='yyyy-dd-mm']",
     dateCloseButton: ".--close",
-    submitButton: ".orangehrm-left-space"
+    submitButton: ".orangehrm-left-space",
+    selectionListButton: ".oxd-select-text--arrow",
+    fifthItemOnFirstList: ".oxd-select-dropdown > :nth-child(5)",
+    ThirdItemOnSecondList: ".oxd-select-dropdown > :nth-child(3)"
   }
 
   it.only('User Info Update - Success', () => {
@@ -34,9 +37,14 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.genericField).eq(5).clear().type(112)
     cy.get(selectorsList.dateField).eq(0).clear().type("2025-25-02")
     cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.submitButton).eq(0).click()
+    cy.get(selectorsList.selectionListButton).eq(0).click()
+    cy.get(selectorsList.fifthItemOnFirstList).click()
+    cy.get(selectorsList.selectionListButton).eq(1).click()
+    cy.get(selectorsList.ThirdItemOnSecondList).click()
+    cy.get(selectorsList.submitButton).eq(0).click({force: true})
     cy.get('body').should('contain', 'Successfully Updated')
     cy.get('.oxd-toast-close')
+
   })
   it('Login - Fail', () => {
     cy.visit('/auth/login')
