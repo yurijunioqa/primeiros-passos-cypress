@@ -16,16 +16,23 @@ class MyInfoPage {
         return selectors
     }
 
+    fillPersonalDetails (firstName, middleName, lastName) {
+        cy.get(this.selectorsList().firstNameField).clear().type(firstName)
+        cy.get(this.selectorsList().middleNameField).clear().type(middleName)
+        cy.get(this.selectorsList().lastNameField).clear().type(lastName)
+    }
 
-    fillProfileInfo () {
-        cy.get(this.selectorsList().firstNameField).clear().type('Broski')
-        cy.get(this.selectorsList().middleNameField).clear().type('Broski')
-        cy.get(this.selectorsList().lastNameField).clear().type('Broski')
-        cy.get(this.selectorsList().genericField).eq(3).clear().type(112)
-        cy.get(this.selectorsList().genericField).eq(4).clear().type(112)
-        cy.get(this.selectorsList().genericField).eq(5).clear().type(112)
-        cy.get(this.selectorsList().dateField).eq(0).clear().type("2025-25-02")
+    fillEmployeeDetails (employeeId, otherId, driversLicenseNumber, driversLicenseExpirationDate) {
+      
+        cy.get(this.selectorsList().genericField).eq(3).clear().type(employeeId)
+        cy.get(this.selectorsList().genericField).eq(4).clear().type(otherId)
+        cy.get(this.selectorsList().genericField).eq(5).clear().type(driversLicenseNumber)
+        cy.get(this.selectorsList().dateField).eq(0).clear().type(driversLicenseExpirationDate)
         cy.get(this.selectorsList().dateCloseButton).click()
+     
+    }
+
+    fillStatusDetails () {
         cy.get(this.selectorsList().selectionListButton).eq(0).click()
         cy.get(this.selectorsList().fifthItemOnFirstList).click()
         cy.get(this.selectorsList().selectionListButton).eq(1).click()
